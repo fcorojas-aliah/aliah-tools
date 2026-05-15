@@ -78,7 +78,7 @@
 </div></div>
 <div style="max-width:960px;margin:0 auto;padding:20px 16px">
 <div id="ct" class="flex" style="margin-bottom:12px"></div>
-<label class="toggle"><input type="checkbox" id="promo-chk" checked onchange="cPromo=this.checked;rCU();rCA()"><span style="font-size:14px;font-weight:500;color:#484D31">Promo del mes: <b style="color:#B8A97E">-10% descuento</b></span></label>
+<label class="toggle"><input type="checkbox" id="promo-chk" onchange="cPromo=this.checked;rCU();rCA()"><span style="font-size:14px;font-weight:500;color:#484D31">Promo del mes: <b style="color:#B8A97E">-10% descuento</b></span></label>
 <div id="cu" class="grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
 <div id="ca" style="margin-top:24px"></div>
 </div></div>
@@ -121,19 +121,13 @@ var PG=[
 {t:"D",p:"O/Q (2-3 rec)",m:105.3,mt:110,r:"2-3",b:2,x:"—",pm:8100000,n:22,e:"Sep 2028"},
 {t:"D",p:"O3/P2 (terraza)",m:96,mt:131,r:"2-3",b:2,x:"Terraza",pm:8600000,n:14,e:"Sep 2028"},
 {t:"D",p:"PH (penthouse)",m:88,mt:95,r:2,b:2,x:"Vista premium",pm:7800000,n:7,e:"Sep 2028"},
-{t:"D",p:"GPH (roof propio)",m:92,mt:130,r:"2-3",b:2,x:"Roof garden privado",pm:9700000,n:8,e:"Sep 2028"},
-{t:"D",p:"T1 (town house)",m:105,mt:120,r:3,b:2,x:"Acceso independiente",pm:10800000,n:6,e:"Sep 2028"},
-{t:"D",p:"Garden House",m:148,mt:210,r:3,b:4,x:"Jardín + cuarto servicio",pm:15700000,n:5,e:"Sep 2028"},
 {t:"E",p:"A7/L2 (2 rec)",m:89,mt:108,r:2,b:2,x:"Terraza",pm:8060000,n:28,e:"May 2029"},
 {t:"E",p:"K2/A10 (3 rec)",m:102,mt:140,r:3,b:3,x:"Terraza / Jardín",pm:8500000,n:22,e:"May 2029"},
 {t:"E",p:"Piso tipo",m:95,mt:110,r:"2-3",b:2,x:"—",pm:8200000,n:20,e:"May 2029"},
 {t:"E",p:"PH (penthouse)",m:95,mt:115,r:"2-3",b:2,x:"Último piso",pm:8700000,n:6,e:"May 2029"},
-{t:"E",p:"GPH (roof propio)",m:95,mt:150,r:2,b:2,x:"Roof garden privado",pm:10800000,n:5,e:"May 2029"},
-{t:"E",p:"T1 (town house)",m:100,mt:120,r:3,b:3,x:"Acceso independiente",pm:8400000,n:5,e:"May 2029"},
-{t:"E",p:"Garden House",m:127,mt:271,r:3,b:2,x:"Jardín 145m²",pm:13900000,n:3,e:"May 2029"},
 ];
 var CC=[
-{id:1,n:"Aliah Lomas Verdes",d:"Aliah Dev.",m2:91.7,pr:7982133,pm:88767,u:458,s:244,iv:214,ab:7.5,vl:1.6,pv:7.0,am:30,en:"Inm/28/29",sg:"Premium",al:1},
+{id:1,n:"Aliah Lomas Verdes",d:"Aliah Dev.",m2:91.7,pr:7982133,pm:85835,u:458,s:244,iv:214,ab:7.5,vl:1.6,pv:7.0,am:30,en:"Inm/28/29",sg:"Premium",al:1},
 {id:2,n:"Vidai Toreo",d:"Vida Res.",m2:48,pr:1904450,pm:39676,u:140,s:123,iv:17,ab:1.3,vl:0.9,pv:2.5,am:5,en:"Inm",sg:"Medio"},
 {id:3,n:"Albar TC",d:"Ptofusa",m2:38,pr:2000000,pm:52632,u:136,s:88,iv:48,ab:4.0,vl:3.0,pv:0,am:0,en:"Inm",sg:"Residencial"},
 {id:4,n:"Nauh Toreo",d:"Rakennus",m2:65,pr:2993346,pm:45855,u:33,s:31,iv:2,ab:0.8,vl:2.5,pv:0,am:0,en:"Inm",sg:"Residencial"},
@@ -167,9 +161,9 @@ var FP=function(n){return n.toFixed(1)+"%"};
 function go(p){document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active')});document.getElementById('pg-'+p).classList.add('active');window.scrollTo(0,0);if(p==='calc')iC();if(p==='decide')iD()}
 
 // CALC
-var cT='all',cS=null,cPromo=true,cR='';
+var cT='all',cS=null,cPromo=false,cR='';
 function iC(){rCT();rCU();document.getElementById('ca').innerHTML='<div style="text-align:center;padding:48px;color:#999"><div style="font-size:36px;margin-bottom:8px">↑</div>Selecciona un prototipo</div>'}
-function rCT(){var ts=['all','A','B','C','D','E'],lb={all:'Todas',A:'Torre A · Inm',B:'Torre B · Inm',C:'Torre C · Jun 26',D:'Torre D · Sep 28 (121)',E:'Torre E · May 29 (98)'};document.getElementById('ct').innerHTML=ts.map(function(v){return'<button class="btn '+(cT===v?'on':'')+'" onclick="cT=\''+v+'\';cS=null;cR=\'\';rCT();rCU();iC()">'+lb[v]+'</button>'}).join('')}
+function rCT(){var ts=['all','A','B','C','D','E'],lb={all:'Todas',A:'Torre A · Inm',B:'Torre B · Inm',C:'Torre C · Jun 26',D:'Torre D · Sep 28 (89)',E:'Torre E · May 29 (76)'};document.getElementById('ct').innerHTML=ts.map(function(v){return'<button class="btn '+(cT===v?'on':'')+'" onclick="cT=\''+v+'\';cS=null;cR=\'\';rCT();rCU();iC()">'+lb[v]+'</button>'}).join('')}
 function rCU(){var list=cT==='all'?PG:PG.filter(function(u){return u.t===cT});var d=cPromo?.9:1;document.getElementById('cu').innerHTML=list.map(function(u,i){var dp=Math.round(u.pm*d);var s='<div class="card '+(cS===i?'sel':'')+'" onclick="cS='+i+';cR=\'\';rCU();rCA()">';s+='<div style="display:flex;justify-content:space-between"><div>';s+='<div style="font-size:11px;color:#B8A97E;font-weight:600;letter-spacing:1px;text-transform:uppercase">Torre '+u.t+' · '+u.p+'</div>';s+='<div style="font-size:12px;color:#666;margin-top:4px">'+u.n+' unidad'+(u.n>1?'es':'')+' disponible'+(u.n>1?'s':'')+'</div>';s+='</div><div style="text-align:right">';if(cPromo)s+='<div class="strike" style="font-size:12px">$'+F(u.pm)+'</div>';s+='<div class="gold" style="font-size:16px;font-weight:700">$'+F(dp)+'</div>';s+='<div style="font-size:10px;color:#999">'+(cPromo?'con 10% desc':'precio lista')+'</div>';s+='</div></div>';s+='<div style="display:flex;gap:12px;margin-top:10px;font-size:12px;color:#666"><span>'+u.m+'m²</span><span>'+u.r+' rec</span><span>'+u.b+' ba</span><span style="color:#484D31;font-weight:500">'+u.e+'</span></div>';if(u.x!=='—')s+='<div style="font-size:11px;color:#5F6844;margin-top:6px;font-weight:500">✦ '+u.x+'</div>';s+='</div>';return s}).join('')}
 function rCA(){if(cS===null)return;var u=PG[cS],d=cPromo?.9:1,pd=Math.round(u.pm*d),rm=cR?parseFloat(cR):Math.round(u.m*RM2),ra=rm*12,cr=(ra/pd)*100,tr=cr+PV,pm2=pd/u.m;
 var pj=[1,3,5].map(function(y){var fv=Math.round(pd*Math.pow(1.07,y)),ap=fv-pd,rt=Math.round(ra*y),tot=ap+rt,ct=Math.round(pd*(CN/100)*y);return{y:y,fv:fv,ap:ap,rt:rt,tot:tot,ct:ct}});
@@ -189,7 +183,7 @@ h+='<div style="opacity:.7">vs CETES neto: <b>'+FP(CN)+'</b></div>';
 h+='<div style="background:#B8A97E;padding:4px 16px;border-radius:20px;font-weight:700">'+(tr/CN).toFixed(1)+'× más rendimiento</div></div></div>';
 // BARS
 h+='<h3 style="font-size:13px;font-weight:600;margin:20px 0 12px;text-transform:uppercase;letter-spacing:1px;color:#484D31">Comparativa visual</h3>';
-var bars=[{n:'Aliah (renta + plusvalía)',r:tr,c:'linear-gradient(90deg,#B8A97E,#d4c9a8)',bo:1},{n:'Solo renta (cap rate)',r:cr,c:'#A4AC8C'},{n:'CETES 28d bruto (6.54%)',r:CB,c:'#94a3b8'},{n:'CETES 28d neto ISR',r:CN,c:'#64748b'},{n:'Plusvalía Aliah',r:PV,c:'#5F6844'}];
+var crz=5.8;var bars=[{n:'Aliah (cap rate + plusvalía)',r:tr,c:'linear-gradient(90deg,#B8A97E,#d4c9a8)',bo:1},{n:'Cap rate zona (Monopolio)',r:crz,c:'#A4AC8C'},{n:'S&P 500 (prom. 10 años)',r:10.5,c:'#94a3b8'},{n:'CETES neto ISR',r:CN,c:'#64748b'},{n:'Cap rate Aliah (solo renta)',r:cr,c:'#5F6844'}];
 bars.forEach(function(b){h+='<div class="bar-c"><div class="bar-l" '+(b.bo?'style="color:#B8A97E;font-weight:700"':'')+'>'+b.n+'</div><div class="bar-t"><div class="bar-f" style="width:'+Math.min(b.r/16*100,100)+'%;background:'+b.c+'">'+FP(b.r)+'</div></div></div>'});
 // PROJECTION
 h+='<h3 style="font-size:13px;font-weight:600;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;color:#484D31">Proyección patrimonial</h3>';
@@ -207,16 +201,17 @@ function rDSo(){var o=[{k:'ab',l:'Ventas Mensuales'},{k:'pm',l:'$/m²'},{k:'u',l
 function rDSg(){var s=['all','Premium','Res. Plus','Residencial','Medio'],l={all:'Todos',Premium:'Premium','Res. Plus':'Res. Plus',Residencial:'Residencial',Medio:'Medio'};document.getElementById('dsg').innerHTML='<span style="font-size:11px;color:#999">Segmento:</span>'+s.map(function(v){return'<button class="btn btn-sm '+(dG===v?'on':'')+'" onclick="dG=\''+v+'\';rDT()" style="border-color:#B8A97E55;'+(dG===v?'background:#B8A97E;color:white;border-color:#B8A97E':'')+'">'+l[v]+'</button>'}).join('')}
 function rDT(){var list=dG==='all'?CC.slice():CC.filter(function(c){return c.al||c.sg===dG});var desc=['ab','pm','u','pv','am'].indexOf(dS)>=0;list.sort(function(a,b){if(a.al)return-1;if(b.al)return 1;var va=a[dS]||0,vb=b[dS]||0;return desc?vb-va:va-vb});
 var h='<div style="overflow-x:auto"><div style="min-width:680px">';
-h+='<div class="trow th"><div>#</div><div>Proyecto</div><div class="hm">Desarrollador</div><div style="text-align:right">$/m²</div><div style="text-align:right">m²</div><div style="text-align:right">Ventas</div><div style="text-align:right">Amenidades</div><div>Seg.</div></div>';
+var hs='background:#B8A97E22;border-radius:4px;padding:2px 6px';
+h+='<div class="trow th"><div>#</div><div>Proyecto</div><div class="hm">Desarrollador</div><div style="text-align:right;'+(dS==='pm'?hs:'')+'">$/m²</div><div style="text-align:right">m²</div><div style="text-align:right;'+(dS==='ab'?hs:'')+'">Ventas</div><div style="text-align:right;'+(dS==='am'?hs:'')+'">Amenidades</div><div>Seg.</div></div>';
 list.forEach(function(c,i){var sg=c.sg==='Premium'?'badge-p':c.sg==='Res. Plus'?'badge-rp':c.sg==='Medio'?'badge-m':'badge-r';
 h+='<div class="trow '+(c.al?'al':'')+' '+(dH===c.id?'highlighted':'')+'" onclick="dH=dH==='+c.id+'?null:'+c.id+';rDT();rDD()" style="'+(dH===c.id?'background:#B8A97E11':'')+'">';
 h+='<div style="font-size:10px;color:#aaa">'+(c.al?'★':(i+1))+'</div>';
 h+='<div><div style="font-weight:'+(c.al?700:500)+';font-size:12px;color:'+(c.al?'#484D31':'#282823')+'">'+(c.al?'<span style="color:#B8A97E">★ </span>':'')+c.n+'</div>'+(c.al?'<div style="font-size:9px;color:#B8A97E">2 años #1 ventas y plusvalía</div>':'')+'</div>';
 h+='<div class="hm" style="font-size:11px;color:#777">'+c.d+'</div>';
-h+='<div style="text-align:right;font-weight:'+(c.al?700:500)+';color:'+(c.pm>70000?'#B8A97E':'#282823')+';font-size:12px">$'+F(c.pm)+'</div>';
+h+='<div style="text-align:right;font-weight:'+(c.al?700:500)+';color:'+(c.pm>70000?'#B8A97E':'#282823')+';font-size:12px;'+(dS==='pm'?hs:'')+'">$'+F(c.pm)+'</div>';
 h+='<div style="text-align:right;font-size:11px">'+c.m2+'</div>';
-h+='<div style="text-align:right;font-weight:600;color:'+(c.ab>=4?'#484D31':c.ab>=2?'#5F6844':'#aaa')+';font-size:'+(c.al?'14px':'12px')+'">'+c.ab+'</div>';
-h+='<div style="text-align:right;font-size:12px;font-weight:'+(c.am>=20?'700':'400')+';color:'+(c.am?c.am>=20?'#B8A97E':'#282823':'#ccc')+'">'+(c.am||'N/D')+'</div>';
+h+='<div style="text-align:right;font-weight:600;color:'+(c.ab>=4?'#484D31':c.ab>=2?'#5F6844':'#aaa')+';font-size:'+(c.al?'14px':'12px')+';'+(dS==='ab'?hs:'')+'">'+c.ab+'</div>';
+h+='<div style="text-align:right;font-size:12px;font-weight:'+(c.am>=20?'700':'400')+';color:'+(c.am?c.am>=20?'#B8A97E':'#282823':'#ccc')+';'+(dS==='am'?hs:'')+'">'+(c.am||'N/D')+'</div>';
 h+='<div><span class="badge '+sg+'">'+c.sg+'</span></div></div>'});
 h+='</div></div>';document.getElementById('dt').innerHTML=h;rDD()}
 function rDD(){var c=CC.filter(function(x){return x.id===dH})[0];if(!c){document.getElementById('dd').innerHTML='';return}

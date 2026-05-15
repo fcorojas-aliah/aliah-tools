@@ -162,35 +162,74 @@ function go(p){document.querySelectorAll('.page').forEach(function(e){e.classLis
 
 // CALC
 var cT='all',cS=null,cPromo=false,cR='';
+var cEng=0;
+var ADM={D:{r:0.06,dif:10,mo:28},E:{r:0.08,dif:15,mo:36}};
+function pvF(eng,dif,mo,r){var rm=Math.pow(1+r,1/12)-1,liq=100-eng-dif,s=0;for(var i=1;i<=mo;i++)s+=1/Math.pow(1+rm,i);return eng/100+(dif/100/mo)*s+(liq/100)/Math.pow(1+r,mo/12)}
 function iC(){rCT();rCU();document.getElementById('ca').innerHTML='<div style="text-align:center;padding:48px;color:#999"><div style="font-size:36px;margin-bottom:8px">↑</div>Selecciona un prototipo</div>'}
-function rCT(){var ts=['all','A','B','C','D','E'],lb={all:'Todas',A:'Torre A · Inm',B:'Torre B · Inm',C:'Torre C · Jun 26',D:'Torre D · Sep 28 (89)',E:'Torre E · May 29 (76)'};document.getElementById('ct').innerHTML=ts.map(function(v){return'<button class="btn '+(cT===v?'on':'')+'" onclick="cT=\''+v+'\';cS=null;cR=\'\';rCT();rCU();iC()">'+lb[v]+'</button>'}).join('')}
-function rCU(){var list=cT==='all'?PG:PG.filter(function(u){return u.t===cT});var d=cPromo?.9:1;document.getElementById('cu').innerHTML=list.map(function(u,i){var dp=Math.round(u.pm*d);var s='<div class="card '+(cS===i?'sel':'')+'" onclick="cS='+i+';cR=\'\';rCU();rCA()">';s+='<div style="display:flex;justify-content:space-between"><div>';s+='<div style="font-size:11px;color:#B8A97E;font-weight:600;letter-spacing:1px;text-transform:uppercase">Torre '+u.t+' · '+u.p+'</div>';s+='<div style="font-size:12px;color:#666;margin-top:4px">'+u.n+' unidad'+(u.n>1?'es':'')+' disponible'+(u.n>1?'s':'')+'</div>';s+='</div><div style="text-align:right">';if(cPromo)s+='<div class="strike" style="font-size:12px">$'+F(u.pm)+'</div>';s+='<div class="gold" style="font-size:16px;font-weight:700">$'+F(dp)+'</div>';s+='<div style="font-size:10px;color:#999">'+(cPromo?'con 10% desc':'precio lista')+'</div>';s+='</div></div>';s+='<div style="display:flex;gap:12px;margin-top:10px;font-size:12px;color:#666"><span>'+u.m+'m²</span><span>'+u.r+' rec</span><span>'+u.b+' ba</span><span style="color:#484D31;font-weight:500">'+u.e+'</span></div>';if(u.x!=='—')s+='<div style="font-size:11px;color:#5F6844;margin-top:6px;font-weight:500">✦ '+u.x+'</div>';s+='</div>';return s}).join('')}
-function rCA(){if(cS===null)return;var u=PG[cS],d=cPromo?.9:1,pd=Math.round(u.pm*d),rm=cR?parseFloat(cR):Math.round(u.m*RM2),ra=rm*12,cr=(ra/pd)*100,tr=cr+PV,pm2=pd/u.m;
-var pj=[1,3,5].map(function(y){var fv=Math.round(pd*Math.pow(1.07,y)),ap=fv-pd,rt=Math.round(ra*y),tot=ap+rt,ct=Math.round(pd*(CN/100)*y);return{y:y,fv:fv,ap:ap,rt:rt,tot:tot,ct:ct}});
+function rCT(){var ts=['all','A','B','C','D','E'],lb={all:'Todas',A:'Torre A · Inm',B:'Torre B · Inm',C:'Torre C · Jun 26',D:'Torre D · Sep 28 (89)',E:'Torre E · May 29 (76)'};document.getElementById('ct').innerHTML=ts.map(function(v){return'<button class="btn '+(cT===v?'on':'')+'" onclick="cT=\''+v+'\';cS=null;cR=\'\';cEng=0;rCT();rCU();iC()">'+lb[v]+'</button>'}).join('')}
+function rCU(){var list=cT==='all'?PG:PG.filter(function(u){return u.t===cT});var d=cPromo?.9:1;document.getElementById('cu').innerHTML=list.map(function(u,i){var dp=Math.round(u.pm*d);var s='<div class="card '+(cS===i?'sel':'')+'" onclick="cS='+i+';cR=\'\';cEng=0;rCU();rCA()">';s+='<div style="display:flex;justify-content:space-between"><div>';s+='<div style="font-size:11px;color:#B8A97E;font-weight:600;letter-spacing:1px;text-transform:uppercase">Torre '+u.t+' · '+u.p+'</div>';s+='<div style="font-size:12px;color:#666;margin-top:4px">'+u.n+' unidad'+(u.n>1?'es':'')+' disponible'+(u.n>1?'s':'')+'</div>';s+='</div><div style="text-align:right">';if(cPromo)s+='<div class="strike" style="font-size:12px">$'+F(u.pm)+'</div>';s+='<div class="gold" style="font-size:16px;font-weight:700">$'+F(dp)+'</div>';s+='<div style="font-size:10px;color:#999">'+(cPromo?'con 10% desc':'precio lista')+'</div>';s+='</div></div>';s+='<div style="display:flex;gap:12px;margin-top:10px;font-size:12px;color:#666"><span>'+u.m+'m²</span><span>'+u.r+' rec</span><span>'+u.b+' ba</span><span style="color:#484D31;font-weight:500">'+u.e+'</span></div>';if(u.x!=='—')s+='<div style="font-size:11px;color:#5F6844;margin-top:6px;font-weight:500">✦ '+u.x+'</div>';s+='</div>';return s}).join('')}
+function rCA(){if(cS===null)return;var u=PG[cS],d=cPromo?.9:1,pd=Math.round(u.pm*d),pm2=pd/u.m,isDE=u.t==='D'||u.t==='E';
+var rm=cR?parseFloat(cR):Math.round(u.m*RM2),ra=rm*12;
+var cfg=isDE?ADM[u.t]:null,eng=isDE?(cEng||5):0,descFin=0,pf=pd;
+if(isDE){var pvB=pvF(5,cfg.dif,cfg.mo,cfg.r),pvC=pvF(eng,cfg.dif,cfg.mo,cfg.r);descFin=Math.max(0,Math.round(pd*(1-pvB/pvC)));pf=pd-descFin}
+var cr=(ra/pf)*100,tr=cr+PV;
 var h='<div style="background:white;border-radius:16px;padding:24px;border:1px solid #A4AC8C33;box-shadow:0 8px 32px rgba(0,0,0,.04)">';
 h+='<h2 style="font-size:18px;font-weight:300;margin-bottom:4px">Análisis: <b>Torre '+u.t+' · '+u.p+'</b></h2>';
 h+='<p style="font-size:12px;color:#999;margin-bottom:20px">'+u.m+'m² int · '+u.mt+'m² total · '+u.r+' rec · '+u.b+' ba · '+u.e+' · '+u.n+' unidad'+(u.n>1?'es':'')+'</p>';
-h+='<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:20px">';
+h+='<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:20px">';
 if(cPromo)h+='<div style="padding:14px;background:#faf8f3;border-radius:10px"><div style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px">Precio lista</div><div class="strike" style="font-size:18px">$'+F(u.pm)+'</div></div>';
-h+='<div style="padding:14px;background:linear-gradient(135deg,#484D31,#5F6844);border-radius:10px;color:white"><div style="font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:1px">'+(cPromo?'Con 10% descuento':'Precio promedio')+'</div><div style="font-size:22px;font-weight:700">$'+F(pd)+'</div><div style="font-size:11px;opacity:.6">$'+F(Math.round(pm2))+'/m²</div></div>';
-h+='<div style="padding:14px;background:#faf8f3;border-radius:10px"><div style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px">Renta estimada mensual</div><div style="font-size:22px;font-weight:700;color:#B8A97E">$'+F(rm)+'</div><div style="font-size:11px;color:#666">Ref: caso C2 Torre A · $334.5/m²</div><input type="number" placeholder="Ajustar renta" value="'+cR+'" oninput="cR=this.value;rCA()" style="margin-top:8px;width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;font-family:Outfit"></div></div>';
-// RETORNO TOTAL
+h+='<div style="padding:14px;background:linear-gradient(135deg,#484D31,#5F6844);border-radius:10px;color:white"><div style="font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:1px">'+(cPromo?'Precio con promo':'Precio promedio')+'</div><div style="font-size:22px;font-weight:700">$'+F(pd)+'</div><div style="font-size:11px;opacity:.6">$'+F(Math.round(pm2))+'/m²</div></div>';
+if(isDE&&descFin>0)h+='<div style="padding:14px;background:linear-gradient(135deg,#B8A97E,#d4c9a8);border-radius:10px;color:white"><div style="font-size:10px;opacity:.8;text-transform:uppercase;letter-spacing:1px">Precio final (desc. financiero)</div><div style="font-size:22px;font-weight:700">$'+F(pf)+'</div><div style="font-size:11px;opacity:.7">Ahorras $'+F(descFin)+' ('+(descFin/pd*100).toFixed(1)+'%)</div></div>';
+h+='<div style="padding:14px;background:#faf8f3;border-radius:10px"><div style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px">Renta estimada mensual</div><div style="font-size:22px;font-weight:700;color:#B8A97E">$'+F(rm)+'</div><div style="font-size:11px;color:#666">Ref: C2 Torre A · $334.5/m²</div><input type="number" placeholder="Ajustar renta" value="'+cR+'" oninput="cR=this.value;rCA()" style="margin-top:8px;width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;font-family:Outfit"></div></div>';
+if(isDE){var maxE=100-cfg.dif,liq=100-eng-cfg.dif,engAmt=Math.round(pf*eng/100),difAmt=Math.round(pf*cfg.dif/100),liqAmt=pf-engAmt-difAmt,mensu=Math.round(difAmt/cfg.mo);
+h+='<div style="background:#282823;border-radius:16px;padding:24px;color:white;margin-bottom:20px">';
+h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div><div style="font-size:13px;opacity:.7;text-transform:uppercase;letter-spacing:2px">Esquema de pago</div><div style="font-size:11px;color:#B8A97E;margin-top:4px">Plan Cero: 5% firma + '+cfg.dif+'% diferido · Mueve el enganche para ver tu descuento</div></div>';
+h+='<div style="text-align:right"><div style="font-size:36px;font-weight:700;color:#B8A97E">'+eng+'%</div><div style="font-size:10px;opacity:.6">enganche</div></div></div>';
+h+='<input type="range" min="5" max="'+maxE+'" value="'+eng+'" oninput="cEng=parseInt(this.value);rCA()" style="width:100%;height:8px;accent-color:#B8A97E;cursor:pointer;margin-bottom:20px">';
+h+='<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:16px;text-align:center">';
+h+='<div><div style="font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:1px">A la firma</div><div style="font-size:20px;font-weight:700;margin:4px 0">$'+F(engAmt)+'</div><div style="font-size:11px;opacity:.5">'+eng+'%</div></div>';
+h+='<div style="border-left:1px solid #ffffff22;border-right:1px solid #ffffff22"><div style="font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:1px">'+cfg.mo+' mensualidades</div><div style="font-size:20px;font-weight:700;margin:4px 0">$'+F(mensu)+'</div><div style="font-size:11px;opacity:.5">'+cfg.dif+'% diferido</div></div>';
+h+='<div><div style="font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:1px">Al escriturar</div><div style="font-size:20px;font-weight:700;margin:4px 0">$'+F(liqAmt)+'</div><div style="font-size:11px;opacity:.5">'+liq+'% + $50,000 equip.</div></div>';
+h+='</div>';
+if(descFin>0)h+='<div style="margin-top:16px;padding:12px;background:#B8A97E22;border-radius:10px;text-align:center"><span style="font-size:13px;color:#B8A97E;font-weight:600">Descuento financiero: $'+F(descFin)+' ('+(descFin/pd*100).toFixed(1)+'%)</span><span style="font-size:11px;opacity:.5;margin-left:8px">vs Plan Cero</span></div>';
+h+='</div>';
+h+='<div onclick="var a=document.getElementById(\'adm-rate\');a.style.display=a.style.display===\'none\'?\'block\':\'none\'" style="text-align:right;margin:-12px 0 12px;cursor:pointer"><span style="font-size:9px;color:#ccc">⚙</span></div>';
+h+='<div id="adm-rate" style="display:none;background:#f0efe9;border-radius:10px;padding:12px;margin-bottom:20px;font-size:12px"><b>Admin:</b> Tasa descuento Torre '+u.t+': <input type="number" step="0.01" value="'+(cfg.r*100).toFixed(1)+'" oninput="ADM[\''+u.t+'\'].r=parseFloat(this.value)/100;rCA()" style="width:60px;padding:4px;border:1px solid #ddd;border-radius:4px;font-family:Outfit">% anual</div>';
+}
+if(isDE){var moDE=cfg.mo;
+h+='<div style="border-radius:16px;overflow:hidden;margin:20px 0">';
+h+='<div style="display:grid;grid-template-columns:1fr 1fr">';
+h+='<div style="background:#5F6844;padding:20px;text-align:center;color:white"><div style="font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Pre-entrega ('+Math.round(moDE)+' meses)</div><div style="font-size:36px;font-weight:700;color:#A4AC8C">'+FP(PV)+'</div><div style="font-size:12px;opacity:.7;margin-top:4px">Solo plusvalía</div></div>';
+h+='<div style="background:linear-gradient(135deg,#484D31,#3a3f25);padding:20px;text-align:center;color:white"><div style="font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Post-entrega (ya rentando)</div><div style="font-size:36px;font-weight:700;color:#B8A97E">'+FP(tr)+'</div><div style="font-size:12px;opacity:.7;margin-top:4px">Cap rate '+FP(cr)+' + Plusvalía '+FP(PV)+'</div></div>';
+h+='</div></div>';
+}else{
 h+='<div class="rbox"><div style="font-size:13px;opacity:.7;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Retorno total anual estimado</div>';
 h+='<div class="rbig">'+FP(tr)+'</div>';
 h+='<div style="font-size:14px;margin-top:6px;opacity:.8">Cap rate '+FP(cr)+' + Plusvalía '+FP(PV)+'</div>';
 h+='<div style="margin-top:16px;display:flex;justify-content:center;gap:24px;font-size:14px;flex-wrap:wrap">';
 h+='<div style="opacity:.7">vs CETES neto: <b>'+FP(CN)+'</b></div>';
 h+='<div style="background:#B8A97E;padding:4px 16px;border-radius:20px;font-weight:700">'+(tr/CN).toFixed(1)+'× más rendimiento</div></div></div>';
-// BARS
-h+='<h3 style="font-size:13px;font-weight:600;margin:20px 0 12px;text-transform:uppercase;letter-spacing:1px;color:#484D31">Comparativa visual</h3>';
+}
+h+='<h3 style="font-size:13px;font-weight:600;margin:20px 0 12px;text-transform:uppercase;letter-spacing:1px;color:#484D31">Comparativa visual'+(isDE?' (post-entrega)':'')+'</h3>';
 var crz=5.8;var bars=[{n:'Aliah (cap rate + plusvalía)',r:tr,c:'linear-gradient(90deg,#B8A97E,#d4c9a8)',bo:1},{n:'Cap rate zona (Monopolio)',r:crz,c:'#A4AC8C'},{n:'S&P 500 (prom. 10 años)',r:10.5,c:'#94a3b8'},{n:'CETES neto ISR',r:CN,c:'#64748b'},{n:'Cap rate Aliah (solo renta)',r:cr,c:'#5F6844'}];
 bars.forEach(function(b){h+='<div class="bar-c"><div class="bar-l" '+(b.bo?'style="color:#B8A97E;font-weight:700"':'')+'>'+b.n+'</div><div class="bar-t"><div class="bar-f" style="width:'+Math.min(b.r/16*100,100)+'%;background:'+b.c+'">'+FP(b.r)+'</div></div></div>'});
-// PROJECTION
 h+='<h3 style="font-size:13px;font-weight:600;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;color:#484D31">Proyección patrimonial</h3>';
 h+='<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">';
-pj.forEach(function(p){h+='<div class="stat"><div style="font-size:11px;color:#B8A97E;font-weight:600;letter-spacing:1px;margin-bottom:8px">'+p.y+' AÑO'+(p.y>1?'S':'')+'</div><div style="font-size:28px;font-weight:700;color:#484D31">$'+F(p.fv)+'</div><div style="font-size:10px;color:#999;text-transform:uppercase;margin-top:2px">Valor del depto</div><div style="height:1px;background:#eee;margin:12px 0"></div><div style="font-size:13px;color:#484D31">Plusvalía: <b>+$'+F(p.ap)+'</b><br>Renta acum: <b>+$'+F(p.rt)+'</b></div><div style="height:1px;background:#eee;margin:12px 0"></div><div style="font-size:14px;color:#B8A97E;font-weight:600">Total: +$'+F(p.tot)+'</div><div style="font-size:11px;color:#999;margin-top:6px">vs CETES neto: +$'+F(p.ct)+'</div></div>'});
+var pyrs=isDE?[3,5,7]:[1,3,5];
+pyrs.forEach(function(y){var ym=y*12,fv=Math.round(pf*Math.pow(1.07,y)),ap=fv-pf;
+var rtM=0;if(isDE){var moPost=Math.max(0,ym-cfg.mo);rtM=Math.round(ra/12*moPost)}else{rtM=Math.round(ra*y)}
+var tot=ap+rtM,ct=Math.round(pf*(CN/100)*y);
+h+='<div class="stat"><div style="font-size:11px;color:#B8A97E;font-weight:600;letter-spacing:1px;margin-bottom:8px">'+y+' AÑOS</div>';
+h+='<div style="font-size:28px;font-weight:700;color:#484D31">$'+F(fv)+'</div><div style="font-size:10px;color:#999;text-transform:uppercase;margin-top:2px">Valor del depto</div>';
+h+='<div style="height:1px;background:#eee;margin:12px 0"></div>';
+h+='<div style="font-size:13px;color:#484D31">Plusvalía: <b>+$'+F(ap)+'</b><br>Renta acum: <b>+$'+F(rtM)+'</b></div>';
+if(isDE&&ym<=cfg.mo)h+='<div style="font-size:10px;color:#B8A97E;margin-top:4px">Pre-entrega: solo plusvalía</div>';
+else if(isDE)h+='<div style="font-size:10px;color:#B8A97E;margin-top:4px">'+Math.round(cfg.mo)+' meses pre + '+(ym-cfg.mo)+' meses rentando</div>';
+h+='<div style="height:1px;background:#eee;margin:12px 0"></div>';
+h+='<div style="font-size:14px;color:#B8A97E;font-weight:600">Total: +$'+F(tot)+'</div>';
+h+='<div style="font-size:11px;color:#999;margin-top:6px">vs CETES neto: +$'+F(ct)+'</div></div>'});
 h+='</div>';
-h+='<div class="disc"><b>Disclaimer:</b> CETES 28d: 6.54% bruto, ~5.64% neto ISR (Banxico 14-may-2026, retención ISR 2026: 0.90%). Plusvalía 7% anual (Monopolio mzo 2026). Renta ref: caso C2 Torre A $23,000/mes. Rendimiento pasado no garantiza resultados futuros. Precios promedio por prototipo.</div></div>';
+h+='<div class="disc"><b>Disclaimer:</b> CETES 28d: 6.54% bruto, ~5.64% neto ISR (Banxico 14-may-2026, retención ISR 2026: 0.90%). Plusvalía 7% anual (Monopolio mzo 2026). Renta ref: caso C2 Torre A $23,000/mes. Rendimiento pasado no garantiza resultados futuros. Precios promedio por prototipo.'+(isDE?' Descuento financiero calculado con tasa de descuento anual sobre valor presente de pagos vs Plan Cero. $50,000 gastos de equipamiento al escriturar no incluidos en precio.':'')+'</div></div>';
 document.getElementById('ca').innerHTML=h}
 
 // DECIDE

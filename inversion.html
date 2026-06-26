@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+<meta name="theme-color" content="#1a1f0f">
+<title>Aliah Lomas Verdes — Oportunidad de Inversión</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:#0d110a;color:#f0ebe0;-webkit-font-smoothing:antialiased;line-height:1.6}
+
+/* ---- PALETTE ---- */
+:root{--bg:#0d110a;--s1:#141a0e;--s2:#1c2314;--s3:#242d1b;
+--gold:#c4a96a;--gold2:#a08345;--gl:#dbc88e;
+--grn:#7a8c5a;--grn2:#a4ac8c;--gd:#484d31;
+--txt:#f0ebe0;--t2:#bfb9a8;--t3:#7d7868;
+--neg:#c45a5a}
+
+/* ---- HERO ---- */
+.hero{min-height:92vh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(13,17,10,.55) 50%,rgba(13,17,10,.3) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:860px;margin:0 auto;padding:0 24px 48px}
+.hero-kicker{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hero-h{font-size:clamp(32px,5.5vw,54px);font-weight:200;line-height:1.1;margin-bottom:12px}
+.hero-h b{font-weight:700;color:var(--gold)}
+.hero-p{font-size:15px;color:var(--t2);max-width:520px;line-height:1.7}
+.hero-stats{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}
+.hero-stat{text-align:left}
+.hero-stat-v{font-size:28px;font-weight:700;color:var(--gold)}
+.hero-stat-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
+
+/* ---- SECTIONS ---- */
+.sec{max-width:860px;margin:0 auto;padding:72px 24px}
+.sec-wide{max-width:100%}
+.sep{width:32px;height:2px;background:var(--gold);opacity:.35;margin-bottom:32px}
+.kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.sec-h{font-size:clamp(24px,4vw,36px);font-weight:200;line-height:1.15;margin-bottom:14px}
+.sec-h b{font-weight:700;color:var(--gold)}
+.sec-p{font-size:14px;color:var(--t2);max-width:560px;line-height:1.7}
+
+/* ---- IMAGE STRIP ---- */
+.img-strip{display:flex;gap:4px;overflow-x:auto;padding:32px 0;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+.img-strip::-webkit-scrollbar{display:none}
+.img-strip img{height:200px;border-radius:8px;object-fit:cover;scroll-snap-align:start;flex-shrink:0}
+
+/* ---- METRICS ---- */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:24px 0}
+.mcard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:14px}
+.mcard-v{font-size:24px;font-weight:700;color:var(--gold)}
+.mcard-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.mcard-s{font-size:11px;color:var(--t2);margin-top:3px}
+
+/* ---- TABLE ---- */
+.tbl-wrap{overflow-x:auto;margin:24px 0;border-radius:12px;border:1px solid rgba(255,255,255,.06)}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;min-width:700px}
+.tbl th{background:var(--gd);color:var(--gl);padding:10px 8px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;position:sticky;top:0}
+.tbl td{padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.04)}
+.tbl tr:hover td{background:rgba(196,169,106,.04)}
+.tbl .grp{background:var(--s2);font-weight:600;color:var(--gold)}
+.tbl .grp td{padding:6px 8px;font-size:11px;letter-spacing:1px}
+.tbl .hi{color:var(--gold);font-weight:600}
+.tbl .promo-tag{display:inline-block;background:rgba(196,169,106,.15);color:var(--gold);padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;margin-left:4px}
+
+/* ---- RETURN BOX ---- */
+.rbox{background:linear-gradient(135deg,var(--gd),#353d25);border-radius:14px;padding:28px;text-align:center;margin:24px 0;border:1px solid rgba(196,169,106,.08)}
+.rbox-big{font-size:clamp(36px,7vw,52px);font-weight:800;color:var(--gold);line-height:1}
+.rbox-sub{font-size:13px;color:var(--t2);margin-top:6px}
+
+/* ---- BARS ---- */
+.bar-r{display:flex;align-items:center;gap:10px;margin:6px 0}
+.bar-l{width:130px;font-size:11px;color:var(--t2);text-align:right;flex-shrink:0}
+.bar-t{flex:1;height:28px;background:rgba(255,255,255,.03);border-radius:5px;overflow:hidden}
+.bar-f{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:600;color:#fff;min-width:40px}
+.bar-hl .bar-l{color:var(--gold);font-weight:600}
+
+/* ---- PROMO ---- */
+.promo{background:rgba(196,169,106,.06);border:1px solid rgba(196,169,106,.12);border-radius:10px;padding:16px;margin:16px 0;font-size:13px;color:var(--t2)}
+.promo b{color:var(--gold)}
+
+/* ---- RISKS ---- */
+.risk-grid{display:grid;gap:12px;margin:20px 0}
+.risk{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--s2);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,.04)}
+.risk-label{font-size:11px;font-weight:600;color:var(--neg);margin-bottom:2px}
+.risk-mit{font-size:11px;font-weight:600;color:var(--grn2);margin-bottom:2px}
+.risk p{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* ---- CTA ---- */
+.cta{background:linear-gradient(135deg,var(--gold2),var(--gold));border-radius:14px;padding:32px;text-align:center;margin:32px 0}
+.cta *{color:var(--bg)!important}
+.cta-btn{display:inline-block;background:var(--bg);color:var(--gold)!important;padding:14px 32px;border-radius:28px;font-size:15px;font-weight:600;margin-top:14px;text-decoration:none;transition:transform .15s}
+.cta-btn:hover{transform:scale(1.02)}
+
+/* ---- DISC ---- */
+.disc{font-size:9px;color:var(--t3);line-height:1.5;padding:16px 0;border-top:1px solid rgba(255,255,255,.04);margin-top:32px}
+
+/* ---- SCROLL HINT ---- */
+.scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-hint svg{width:24px;height:24px;stroke:var(--t3);fill:none;stroke-width:1.5}
+
+/* ---- PLANT MODAL ---- */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;align-items:center;justify-content:center;padding:20px;cursor:pointer}
+.modal-bg.open{display:flex}
+.modal-bg img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px}
+
+@media(max-width:600px){
+  .sec{padding:48px 16px}
+  .hero-stats{gap:16px}
+  .risk{grid-template-columns:1fr}
+  .bar-l{width:90px;font-size:10px}
+  .img-strip img{height:160px}
+}
+</style>
+</head>
+<body>
+
+<!-- PLANT MODAL -->
+<div class="modal-bg" id="plantModal" onclick="this.classList.remove('open')">
+  <img id="plantImg" src="" alt="Planta arquitectonica">
+</div>
+
+<!-- ======== HERO ======== -->
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/RENDER%20ZOOM%20FINAL%20COPIA.jpg')"></div>
+  <div class="hero-inner">
+    <div class="hero-kicker">Aliah Developments &middot; Studio R &middot; Junio 2026</div>
+    <h1 class="hero-h">Oportunidad de<br><b>inversión patrimonial</b></h1>
+    <p class="hero-p">30 departamentos en el desarrollo con mayor plusvalía y velocidad de venta de la zona metropolitana. Un solo movimiento.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-v">$214M</div><div class="hero-stat-l">Valor de lista</div></div>
+      <div class="hero-stat"><div class="hero-stat-v">+88%</div><div class="hero-stat-l">Plusvalia a 10 años</div></div>
+      <div class="hero-stat"><div class="hero-stat-v">18.1%</div><div class="hero-stat-l">TIR proyectada</div></div>
+      <div class="hero-stat"><div class="hero-stat-v">$970K</div><div class="hero-stat-l">Renta mensual del paquete</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+</section>
+
+<!-- ======== CREDENCIALES ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Credenciales</div>
+  <h2 class="sec-h">No es una promesa.<br><b>Es un desarrollo premiado.</b></h2>
+  <p class="sec-p">Aliah Lomas Verdes lleva 2 años consecutivos como el proyecto #1 en ventas y plusvalía de la zona metropolitana. Tres certificaciones internacionales respaldan lo que el mercado ya decidio.</p>
+  <div class="mgrid" style="margin-top:24px">
+    <div class="mcard"><div class="mcard-v">1er Lugar</div><div class="mcard-l">Luxury Lifestyle Awards 2025</div><div class="mcard-s">Apartment Living</div></div>
+    <div class="mcard"><div class="mcard-v">1er Lugar</div><div class="mcard-l">Premios LADI 2024</div><div class="mcard-s">Vivienda Vertical</div></div>
+    <div class="mcard"><div class="mcard-v">#1</div><div class="mcard-l">Plusvalia ZMVM</div><div class="mcard-s">+7% anual, Monopolio 2026</div></div>
+    <div class="mcard"><div class="mcard-v">#1</div><div class="mcard-l">Ventas ZMVM</div><div class="mcard-s">7.5 unidades/mes</div></div>
+    <div class="mcard"><div class="mcard-v">Best Place</div><div class="mcard-l">Certificacion</div><div class="mcard-s">Best Place to Live</div></div>
+    <div class="mcard"><div class="mcard-v">+40 años</div><div class="mcard-l">Experiencia</div><div class="mcard-s">Grupo desarrollador</div></div>
+  </div>
+</div>
+
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/LOBBY%20TORRE%202%20Y%203%20PREFINAL.jpg" alt="Lobby Aliah Lomas Verdes" style="width:100%;border-radius:12px;margin-bottom:8px" loading="lazy" onerror="this.style.display='none'">
+  <p style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:24px">Lobby Torres 2 y 3 — Render arquitectónico</p>
+</div>
+<!-- ======== LIFESTYLE STRIP ======== -->
+<div class="img-strip">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/Alberca.jpeg" alt="Alberca techada" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/render%203%20spa%20editado%20copia.jpg" alt="Spa y bienestar" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/GYM%20FINAL%20EDITADO%20copia.jpg" alt="Gimnasio" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/RENDER%20ZOOM%20FINAL%20COPIA.jpg" alt="Vista del conjunto" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/LUDOTECA%20RENDER%202.1%20copia.jpg" alt="Ludoteca" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/CAFETER%C3%8DA.jpeg" alt="Cafetería" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/DJI_20250729101506_0011_D.jpg" alt="Vista aérea del proyecto" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/DJI_20250731111243_0128_D.jpg" alt="Avance de obra aéreo" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/DJI_20250731111513_0133_D.jpg" alt="Torres en construcción" loading="lazy">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/DJI_20250731111957_0142_D.jpg" alt="Vista panorámica" loading="lazy">
+</div>
+
+<!-- ======== UBICACION + MERCADO ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Ubicación y mercado</div>
+  <h2 class="sec-h">Lomas Verdes: la zona que <b>sostiene la renta</b></h2>
+  <p class="sec-p">Av. Lomas Verdes #77, Naucalpan. Conectividad de primer nivel, polo educativo permanente, y un perfil de inquilino de clase media-alta que reduce vacancia y protege el flujo.</p>
+  <div class="mgrid">
+    <div class="mcard"><div class="mcard-v">6.93%</div><div class="mcard-l">Cap Rate Lomas Verdes</div><div class="mcard-s">Vivienda nueva, por encima de Nuevo Polanco (4.55%)</div></div>
+    <div class="mcard"><div class="mcard-v">+7%</div><div class="mcard-l">Plusvalia anual</div><div class="mcard-s">Aliah, Monopolio mzo 2026</div></div>
+    <div class="mcard"><div class="mcard-v">30+</div><div class="mcard-l">Amenidades</div><div class="mcard-s">Mas que cualquier competidor en la zona (prom. 5.5)</div></div>
+    <div class="mcard"><div class="mcard-v">10 min</div><div class="mcard-l">A Polanco</div><div class="mcard-s">Periferico, Gustavo Baz, 2o Piso</div></div>
+  </div>
+</div>
+
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px 32px">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/ROOF%20GARDEN%20COMUN%20FINAL.jpg" alt="Roof Garden Aliah" style="width:100%;border-radius:12px;margin-bottom:8px" loading="lazy" onerror="this.style.display='none'">
+  <p style="font-size:10px;color:var(--t3);text-align:center">Roof Garden común — 30+ amenidades que elevan la renta y reducen vacancia</p>
+</div>
+<!-- ======== TU EQUITY — SKIN IN THE GAME ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Tu capital en juego</div>
+  <h2 class="sec-h">Primero, <b>lo que sale de tu bolsa</b></h2>
+  <p class="sec-p">Antes de hablar de créditos, hipotecas o rentas. Esto es tu equity. Tu piel en el juego. Lo que controla todo lo que viene después.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0">
+    <div class="mcard" style="border-color:rgba(196,169,106,.15)">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;letter-spacing:1px;margin-bottom:8px">ENTREGA INMEDIATA (Torres A, B, C)</div>
+      <div style="font-size:28px;font-weight:700;color:var(--gold)">20 - 0 - 80</div>
+      <div style="font-size:12px;color:var(--t2);margin-top:6px;line-height:1.5">20% enganche a la firma<br>Sin diferido<br>80% crédito hipotecario al escriturar</div>
+      <div style="font-size:11px;color:var(--grn2);margin-top:8px;font-weight:500">+ Devolución hipoteca hasta $300,000</div>
+    </div>
+    <div class="mcard" style="border-color:rgba(196,169,106,.15)">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;letter-spacing:1px;margin-bottom:8px">PREVENTA (Torres D y E)</div>
+      <div style="font-size:28px;font-weight:700;color:var(--gold)">10 - 20 - 70</div>
+      <div style="font-size:12px;color:var(--t2);margin-top:6px;line-height:1.5">10% enganche a la firma<br>20% diferido en mensualidades<br>70% crédito hipotecario al escriturar</div>
+      <div style="font-size:11px;color:var(--grn2);margin-top:8px;font-weight:500">Descuento financiero con mayor enganche</div>
+    </div>
+  </div>
+
+  <div class="rbox" style="background:var(--s2);border:1px solid rgba(196,169,106,.12)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center">
+      <div>
+        <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Enganche del paquete (20%)</div>
+        <div style="font-size:36px;font-weight:700;color:var(--gold);margin:6px 0">$40.6M</div>
+        <div style="font-size:12px;color:var(--t2)">Lo que sale de tu bolsa</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Activo que controlas</div>
+        <div style="font-size:36px;font-weight:700;margin:6px 0">$203M</div>
+        <div style="font-size:12px;color:var(--t2)">30 departamentos premium</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Multiplicador</div>
+        <div style="font-size:36px;font-weight:700;color:var(--gold);margin:6px 0">5x</div>
+        <div style="font-size:12px;color:var(--t2)">Cada peso tuyo controla 5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="promo">
+    <b>Para las primeras 7 unidades (Torres A, B y C):</b> entrega inmediata o proxima. El proceso es enganche + crédito hipotecario directo. Aliah devuelve hasta <b>$300,000 por unidad</b> en pagos de hipoteca. Eso son hasta <b>$2.1M de devolución</b> solo en estas 7 unidades.
+  </div>
+
+  <p style="font-size:13px;color:var(--t2);margin-top:16px">Para las 23 unidades en preventa (Torres D y E), el enganche y diferido se pagan durante la construccion. Al escriturar, el banco pone el resto. Tu equity trabaja desde el dia uno capturando plusvalía de obra.</p>
+</div>
+
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px 32px">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/RENDER%20ZOOM%20FINAL%20COPIA.jpg" alt="Detalle arquitectónico Aliah" style="width:100%;border-radius:12px" loading="lazy" onerror="this.style.display='none'">
+</div>
+<!-- ======== WOW: RETORNO SOBRE TU EQUITY ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Retorno sobre tu capital</div>
+  <h2 class="sec-h">Con <b>$40.6M</b> controlas un portafolio<br>que vale <b>$401M en 10 años</b></h2>
+  <p class="sec-p">Esta es la magia del real estate: no necesitas pagar el 100% para que el 100% del activo se aprecie. Tu equity trabaja apalancado desde el dia uno.</p>
+
+  <div class="rbox">
+    <div style="font-size:11px;color:var(--t2);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">Retorno sobre tu equity a 10 años</div>
+    <div class="rbox-big">+$188M</div>
+    <div class="rbox-sub">Solo plusvalía. Sin contar un peso de renta.</div>
+    <div style="margin-top:16px;font-size:14px;color:var(--t2)">Invertiste <b style="color:var(--gold)">$40.6M</b> de enganche &rarr; el activo se aprecio <b style="color:var(--gold)">$188M</b> &rarr; eso es <b style="color:var(--gold)">4.6x tu capital</b></div>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin:24px 0;text-align:center">
+    <div><div style="font-size:13px;color:var(--t3)">Hoy (c/desc.)</div><div style="font-size:24px;font-weight:700">$203M</div></div>
+    <div style="color:var(--t3);font-size:18px;align-self:center">&rarr;</div>
+    <div><div style="font-size:13px;color:var(--t3)">Año 5</div><div style="font-size:24px;font-weight:700;color:var(--grn2)">$278M</div></div>
+    <div style="color:var(--t3);font-size:18px;align-self:center">&rarr;</div>
+    <div><div style="font-size:13px;color:var(--t3)">Año 10</div><div style="font-size:24px;font-weight:700;color:var(--gold)">$401M</div></div>
+  </div>
+
+  <p style="font-size:12px;color:var(--t3);text-align:center">Plusvalia 6.5% anual (Monopolio 2026). Solo apreciación del activo. Todavia no metemos la renta.</p>
+</div>
+
+<!-- ======== APALANCAMIENTO: AHORA SI, CREDITO + RENTA ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Apalancamiento</div>
+  <h2 class="sec-h">Ahora sí: <b>el crédito y la renta</b></h2>
+  <p class="sec-p">Cuando escrituras, el banco pone el 80%. Y el inquilino empieza a pagar tu deuda. Cada mes la renta amortiza un activo que ya se esta apreciando.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0">
+    <div class="mcard" style="border-color:rgba(122,140,90,.2)">
+      <div class="mcard-v" style="color:var(--grn2)">$970K/mes</div>
+      <div class="mcard-l">Renta total del paquete</div>
+      <div class="mcard-s">$32K promedio por unidad, crece ~5% anual</div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-v">$1.47M/mes</div>
+      <div class="mcard-l">Hipoteca total estimada</div>
+      <div class="mcard-s">30 créditos a 10.5%, 20 años</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:16px;background:rgba(196,169,106,.06);border-radius:10px;margin:12px 0">
+    <div style="font-size:14px;color:var(--gold);font-weight:600">Aportacion mensual neta del portafolio: ~$500K</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:4px">No es un gasto. Es capital que amortiza 30 activos que se aprecian 6.5% anual, cada uno.</div>
+    <div style="font-size:13px;color:var(--grn2);margin-top:8px;font-weight:500">Con renta subiendo 5% anual y hipoteca fija, el cruce llega antes del año 10</div>
+  </div>
+
+  <div class="promo">
+    <b>Acelerador:</b> Con la devolución de hipoteca en Torres A/B/C ($2.1M) aplicada como pago a capital desde el primer mes, reduces saldo e intereses de forma permanente. Con productos como <b>Scotiabank Valora</b>, la tasa y el plazo se reducen con pago puntual. Los dos juntos adelantan el punto de equilibrio significativamente.
+  </div>
+</div>
+
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px 32px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/DJI_20250731112822_0151_D.jpg" alt="Vista aérea Aliah Lomas Verdes" style="width:100%;border-radius:12px;object-fit:cover;height:220px" loading="lazy" onerror="this.style.display='none'">
+    <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/DJI_20250731111957_0142_D.jpg" alt="Avance de obra torres" style="width:100%;border-radius:12px;object-fit:cover;height:220px" loading="lazy" onerror="this.style.display='none'">
+  </div>
+  <p style="font-size:10px;color:var(--t3);text-align:center;margin-top:8px">Avance real de obra — Torres A y B entregadas, Torre C en acabados</p>
+</div>
+<!-- ======== EL PAQUETE ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">El paquete</div>
+  <h2 class="sec-h"><b>30 unidades,</b> un solo movimiento</h2>
+  <p class="sec-p">Diversificacion por torre, prototipo y fecha de entrega. Los primeros generan renta desde manana; los ultimos capturan plusvalía de obra. Precios con 5% de descuento por volumen ya aplicado.</p>
+
+  <div class="mgrid" style="margin:24px 0">
+    <div class="mcard"><div class="mcard-v">$203M</div><div class="mcard-l">Inversión total</div><div class="mcard-s">Con 5% desc. por volumen</div></div>
+    <div class="mcard"><div class="mcard-v">$10.7M</div><div class="mcard-l">Ahorro inmediato</div><div class="mcard-s">Descuento por volumen</div></div>
+    <div class="mcard"><div class="mcard-v">5.48%</div><div class="mcard-l">Cap rate prom. año 1</div><div class="mcard-s">Sobre las 30 unidades</div></div>
+    <div class="mcard"><div class="mcard-v">$970K/mes</div><div class="mcard-l">Renta total estimada</div><div class="mcard-s">Del paquete completo</div></div>
+  </div>
+
+  <!-- Nudge: first 4 are immediate delivery with promo -->
+  <div class="promo">
+    <b>Las primeras 4 unidades rentan desde el dia uno.</b> Ademas, Torres A, B y C tienen un programa de devolución de hipoteca: Aliah te regresa hasta $300,000 en pagos mensuales de hipoteca (hasta 24 meses). Aplicalo como pago a capital para reducir tu deuda desde el primer mes.
+  </div>
+
+  <div class="tbl-wrap" style="max-height:520px;overflow-y:auto">
+  <table class="tbl">
+    <thead><tr>
+      <th>#</th><th>Depto</th><th>Torre</th><th>m2</th><th style="text-align:right">Precio c/desc.</th><th style="text-align:right">Renta/mes</th><th style="text-align:right">Cap Rate</th><th style="text-align:right">TIR 10a</th><th>Entrega</th><th>Planta</th>
+    </tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="10">ENTREGA INMEDIATA &mdash; Renta desde manana + promo devolución hipoteca</td></tr>      <tr><td style="color:var(--t3)">1</td><td><b>A-1204</b><span class="promo-tag">PROMO</span></td><td>A</td><td>75.0</td><td style="text-align:right">$5,063,000</td><td style="text-align:right">$26,000</td><td style="text-align:right" class="hi">6.23%</td><td style="text-align:right">17.2%</td><td>Inmediata</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-a/DEPTO-C-TORRE%20A-NT.png',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">2</td><td><b>A-503</b><span class="promo-tag">PROMO</span></td><td>A</td><td>68.8</td><td style="text-align:right">$5,010,000</td><td style="text-align:right">$24,000</td><td style="text-align:right">5.76%</td><td style="text-align:right">16.1%</td><td>Inmediata</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-a/DEPTO%20TIPO%20C2%20NT.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">3</td><td><b>A-803</b><span class="promo-tag">PROMO</span></td><td>A</td><td>68.8</td><td style="text-align:right">$5,110,000</td><td style="text-align:right">$24,000</td><td style="text-align:right">5.65%</td><td style="text-align:right">15.8%</td><td>Inmediata</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-a/DEPTO%20TIPO%20C2%20NT.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">4</td><td><b>B-506</b><span class="promo-tag">PROMO</span></td><td>B</td><td>73.2</td><td style="text-align:right">$5,040,000</td><td style="text-align:right">$26,000</td><td style="text-align:right" class="hi">6.11%</td><td style="text-align:right">16.9%</td><td>Inmediata</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-b/DEPTO%20TIPO%20E%20NT.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr class="grp"><td colspan="10">ENTREGA NOV 2026 &mdash; Esquema 20-0-80 &middot; Plusvalía de obra &middot; Promo devolución hipoteca</td></tr>
+      <tr><td style="color:var(--t3)">5</td><td><b>C-201</b><span class="promo-tag">PROMO</span></td><td>C</td><td>111.4</td><td style="text-align:right">$6,980,000</td><td style="text-align:right">$39,000</td><td style="text-align:right" class="hi">6.70%</td><td style="text-align:right">19.6%</td><td>Nov 2026</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-c/DEPTO%20TIPO%20H%20NT.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">6</td><td><b>C-601</b><span class="promo-tag">PROMO</span></td><td>C</td><td>111.4</td><td style="text-align:right">$7,100,000</td><td style="text-align:right">$39,000</td><td style="text-align:right" class="hi">6.59%</td><td style="text-align:right">19.3%</td><td>Nov 2026</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-c/DEPTO%20TIPO%20H%20NT.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">7</td><td><b>C-1303</b><span class="promo-tag">PROMO</span></td><td>C</td><td>94.9</td><td style="text-align:right">$7,170,000</td><td style="text-align:right">$33,000</td><td style="text-align:right">5.56%</td><td style="text-align:right">16.6%</td><td>Nov 2026</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-c/DEPTO%20TIPO%20I%20NT.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr class="grp"><td colspan="10">PREVENTA AGO 2028 &mdash; Precio de obra hoy, plusvalía de entrega manana</td></tr>
+      <tr><td style="color:var(--t3)">8</td><td><b>D-205</b></td><td>D</td><td>110.5</td><td style="text-align:right">$7,810,000</td><td style="text-align:right">$39,000</td><td style="text-align:right" class="hi">5.94%</td><td style="text-align:right">19.4%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20Q-N2%20N6%20TORRE%20D.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">9</td><td><b>D-201</b></td><td>D</td><td>109.8</td><td style="text-align:right">$7,930,000</td><td style="text-align:right">$38,000</td><td style="text-align:right" class="hi">5.81%</td><td style="text-align:right">19.2%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20O.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">10</td><td><b>D-509</b></td><td>D</td><td>90.9</td><td style="text-align:right">$6,750,000</td><td style="text-align:right">$32,000</td><td style="text-align:right">5.66%</td><td style="text-align:right">18.8%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20P.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">11</td><td><b>D-1003</b></td><td>D</td><td>87.6</td><td style="text-align:right">$6,530,000</td><td style="text-align:right">$31,000</td><td style="text-align:right">5.63%</td><td style="text-align:right">18.8%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20L4.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">12</td><td><b>D-405</b></td><td>D</td><td>110.5</td><td style="text-align:right">$8,290,000</td><td style="text-align:right">$39,000</td><td style="text-align:right">5.60%</td><td style="text-align:right">18.7%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20Q-N2%20N6%20TORRE%20D.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">13</td><td><b>D-1203</b></td><td>D</td><td>87.6</td><td style="text-align:right">$6,650,000</td><td style="text-align:right">$31,000</td><td style="text-align:right">5.53%</td><td style="text-align:right">18.5%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20L4.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">14</td><td><b>D-902</b></td><td>D</td><td>87.9</td><td style="text-align:right">$6,750,000</td><td style="text-align:right">$31,000</td><td style="text-align:right">5.47%</td><td style="text-align:right">18.4%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20L3.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">15</td><td><b>D-601</b></td><td>D</td><td>109.8</td><td style="text-align:right">$8,480,000</td><td style="text-align:right">$38,000</td><td style="text-align:right">5.44%</td><td style="text-align:right">18.3%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20O.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">16</td><td><b>D-1102</b></td><td>D</td><td>87.9</td><td style="text-align:right">$6,860,000</td><td style="text-align:right">$31,000</td><td style="text-align:right">5.38%</td><td style="text-align:right">18.2%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20L3.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">17</td><td><b>D-1309</b></td><td>D</td><td>90.9</td><td style="text-align:right">$7,100,000</td><td style="text-align:right">$32,000</td><td style="text-align:right">5.37%</td><td style="text-align:right">18.2%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20P.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">18</td><td><b>D-608</b></td><td>D</td><td>82.9</td><td style="text-align:right">$6,550,000</td><td style="text-align:right">$29,000</td><td style="text-align:right">5.31%</td><td style="text-align:right">18.1%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20A13.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">19</td><td><b>D-708</b></td><td>D</td><td>82.9</td><td style="text-align:right">$6,600,000</td><td style="text-align:right">$29,000</td><td style="text-align:right">5.28%</td><td style="text-align:right">18.0%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20A13.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">20</td><td><b>D-1107</b></td><td>D</td><td>82.9</td><td style="text-align:right">$7,030,000</td><td style="text-align:right">$29,000</td><td style="text-align:right">4.96%</td><td style="text-align:right">17.3%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20A13.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">21</td><td><b>D-407</b></td><td>D</td><td>82.9</td><td style="text-align:right">$7,080,000</td><td style="text-align:right">$29,000</td><td style="text-align:right">4.92%</td><td style="text-align:right">17.2%</td><td>Ago 2028</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-d/DEPTO%20TIPO%20A13.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr class="grp"><td colspan="10">PREVENTA FEB 2029 &mdash; Esquema 10-20-70 &middot; Máximo margen de plusvalía pre-entrega</td></tr>
+      <tr><td style="color:var(--t3)">22</td><td><b>E-806</b></td><td>E</td><td>89.2</td><td style="text-align:right">$7,270,000</td><td style="text-align:right">$31,000</td><td style="text-align:right">5.16%</td><td style="text-align:right">18.3%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20L.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">23</td><td><b>E-1103</b></td><td>E</td><td>104.2</td><td style="text-align:right">$8,530,000</td><td style="text-align:right">$36,000</td><td style="text-align:right">5.14%</td><td style="text-align:right">18.3%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20H2.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">24</td><td><b>E-1303</b></td><td>E</td><td>104.2</td><td style="text-align:right">$8,530,000</td><td style="text-align:right">$36,000</td><td style="text-align:right">5.14%</td><td style="text-align:right">18.3%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20H2.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">25</td><td><b>E-1004</b></td><td>E</td><td>96.5</td><td style="text-align:right">$7,910,000</td><td style="text-align:right">$34,000</td><td style="text-align:right">5.12%</td><td style="text-align:right">18.3%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20J2.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">26</td><td><b>E-906</b></td><td>E</td><td>89.2</td><td style="text-align:right">$7,360,000</td><td style="text-align:right">$31,000</td><td style="text-align:right">5.09%</td><td style="text-align:right">18.2%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20L.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">27</td><td><b>E-1101</b></td><td>E</td><td>95.0</td><td style="text-align:right">$8,000,000</td><td style="text-align:right">$33,000</td><td style="text-align:right">4.98%</td><td style="text-align:right">18.0%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20K%27.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">28</td><td><b>E-1301</b></td><td>E</td><td>95.0</td><td style="text-align:right">$8,000,000</td><td style="text-align:right">$33,000</td><td style="text-align:right">4.98%</td><td style="text-align:right">18.0%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20K%27.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">29</td><td><b>E-1104</b></td><td>E</td><td>96.5</td><td style="text-align:right">$8,220,000</td><td style="text-align:right">$34,000</td><td style="text-align:right">4.93%</td><td style="text-align:right">17.9%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20J2.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+      <tr><td style="color:var(--t3)">30</td><td><b>E-1201</b></td><td>E</td><td>95.0</td><td style="text-align:right">$8,100,000</td><td style="text-align:right">$33,000</td><td style="text-align:right">4.92%</td><td style="text-align:right">17.9%</td><td>Feb 2029</td><td><a href="#" onclick="event.preventDefault();showPlant('https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/plantas/torre-e/DEPTO%20TIPO%20K%27.jpg',event);return false" style="font-size:10px;color:var(--gold)">Ver</a></td></tr>
+    </tbody>
+    <tfoot><tr style="background:var(--gd);font-weight:600;color:var(--gl)">
+      <td></td><td>PROMEDIO</td><td>5 torres</td><td>92.4</td>
+      <td style="text-align:right">$7,130,000</td>
+      <td style="text-align:right">$32,000</td>
+      <td style="text-align:right">5.48%</td>
+      <td style="text-align:right">18.1%</td>
+      <td>Escalonada</td><td></td>
+    </tr></tfoot>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--t3);margin-top:8px">Precios con descuento por volumen del 5%. Renta = m2 interior x tarifa de mercado. TIR = renta + plusvalía 6.5% anual. Cifras en MXN.</p>
+</div>
+
+<!-- ======== RESULTADO TOTAL ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Resultado proyectado</div>
+  <h2 class="sec-h">El paquete completo a <b>10 años</b></h2>
+
+  <div class="rbox" style="background:linear-gradient(135deg,#2a3318,var(--gd))">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;text-align:center">
+      <div><div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Inversión</div><div style="font-size:32px;font-weight:700">$203M</div></div>
+      <div><div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Valor año 10</div><div style="font-size:32px;font-weight:700;color:var(--gold)">$401M</div></div>
+      <div><div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Plusvalia capitalizada</div><div style="font-size:32px;font-weight:700;color:var(--grn2)">+$188M</div></div>
+      <div><div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">TIR anualizada</div><div style="font-size:32px;font-weight:700;color:var(--gold)">18.1%</div></div>
+    </div>
+    <div style="margin-top:16px;font-size:13px;color:var(--t2)">El capital casi se duplica en una decada, sin contar el flujo acumulado de renta, y con un activo tangible que protege contra la inflacion.</div>
+  </div>
+
+  <div class="kicker" style="margin-top:32px">Benchmark</div>
+  <h3 class="sec-h" style="font-size:22px">Como se compara tu dinero aqui <b>vs las alternativas</b></h3>
+  <div class="bar-r bar-hl"><div class="bar-l">Aliah (renta+plusvalía)</div><div class="bar-t"><div class="bar-f" style="width:89%;background:linear-gradient(90deg,var(--gold),var(--gl))">12.5%</div></div></div>
+  <div class="bar-r"><div class="bar-l">S&P 500 (10a prom)</div><div class="bar-t"><div class="bar-f" style="width:75%;background:var(--grn)">10.5%</div></div></div>
+  <div class="bar-r"><div class="bar-l">Cap rate zona (Monopolio)</div><div class="bar-t"><div class="bar-f" style="width:50%;background:var(--grn2)">6.9%</div></div></div>
+  <div class="bar-r"><div class="bar-l">CETES neto ISR</div><div class="bar-t"><div class="bar-f" style="width:40%;background:var(--t3)">5.6%</div></div></div>
+  <div class="bar-r"><div class="bar-l">Inflacion Mexico</div><div class="bar-t"><div class="bar-f" style="width:30%;background:#666">4.2%</div></div></div>
+
+  <p style="font-size:11px;color:var(--t3);margin-top:12px;text-align:center">TIR Aliah incluye plusvalía + flujo de renta. S&P 500 en pesos con tipo de cambio historico. CETES neto después de ISR.</p>
+</div>
+
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px 32px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div>
+      <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/140322-RENDER%20SPA%2001%20FINAL.jpg" alt="Spa Aliah" style="width:100%;border-radius:12px;object-fit:cover;height:200px" loading="lazy" onerror="this.style.display='none'">
+      <p style="font-size:10px;color:var(--t3);text-align:center;margin-top:4px">Spa</p>
+    </div>
+    <div>
+      <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/GYM%20FINAL%20EDITADO%20copia.jpg" alt="Gimnasio Aliah" style="width:100%;border-radius:12px;object-fit:cover;height:200px" loading="lazy" onerror="this.style.display='none'">
+      <p style="font-size:10px;color:var(--t3);text-align:center;margin-top:4px">Gimnasio</p>
+    </div>
+  </div>
+</div>
+<!-- ======== POR QUE EL PAQUETE ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Ventaja de escala</div>
+  <h2 class="sec-h">Comprar 30 no es comprar 1 treinta veces</h2>
+  <div class="mgrid">
+    <div class="mcard"><div class="mcard-v">$10.7M</div><div class="mcard-l">Ahorro por volumen</div><div class="mcard-s">5% capturado desde la firma, antes de un peso de renta</div></div>
+    <div class="mcard"><div class="mcard-v">5 torres</div><div class="mcard-l">Diversificacion</div><div class="mcard-s">Prototipos y entregas distintas: riesgo repartido</div></div>
+    <div class="mcard"><div class="mcard-v">Escalonada</div><div class="mcard-l">Liquidez</div><div class="mcard-s">De inmediata a 2029: gestionas escrituras por etapas</div></div>
+    <div class="mcard"><div class="mcard-v">Doble salida</div><div class="mcard-l">Flexibilidad</div><div class="mcard-s">Renta el portafolio o vende por unidad en secundario</div></div>
+  </div>
+</div>
+
+<!-- ======== RIESGOS ======== -->
+<div class="sec">
+  <div class="sep"></div>
+  <div class="kicker">Debida diligencia</div>
+  <h2 class="sec-h">Riesgos y <b>mitigantes</b></h2>
+  <p class="sec-p">Un analisis honesto fortalece la decision.</p>
+  <div class="risk-grid">
+    <div class="risk">
+      <div><div class="risk-label">Flujo negativo inicial</div><p>La renta no cubre la hipoteca los primeros años.</p></div>
+      <div><div class="risk-mit">Mitigante</div><p>Es aportación a capital de un activo que se aprecia. Entrada escalonada dosifica el desembolso.</p></div>
+    </div>
+    <div class="risk">
+      <div><div class="risk-label">Tasa hipotecaria (10.5%)</div><p>El costo financiero presiona el flujo.</p></div>
+      <div><div class="risk-mit">Mitigante</div><p>Modelo a tasa actual conservadora. Refinanciar a la baja mejora retorno. Posible contado parcial.</p></div>
+    </div>
+    <div class="risk">
+      <div><div class="risk-label">Vacancia</div><p>Riesgo de unidades sin rentar.</p></div>
+      <div><div class="risk-mit">Mitigante</div><p>Zona consolidada con demanda profunda. 30+ amenidades premium reducen dias en mercado.</p></div>
+    </div>
+    <div class="risk">
+      <div><div class="risk-label">Plazo de entrega (2028-2029)</div><p>Capital comprometido antes de rentar.</p></div>
+      <div><div class="risk-mit">Mitigante</div><p>Captura de plusvalía durante obra. Preventa por debajo del valor de entrega.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== CTA ======== -->
+<div class="sec">
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px 16px">
+  <img src="https://raw.githubusercontent.com/fcorojas-aliah/aliah-assets/main/renders/CAFETER%C3%8DA.jpeg" alt="Cafetería Aliah" style="width:100%;border-radius:12px" loading="lazy" onerror="this.style.display='none'">
+</div>
+  <div class="cta">
+    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;opacity:.7">Aliah Lomas Verdes</div>
+    <div style="font-size:clamp(22px,4vw,30px);font-weight:700">Agenda tu presentación de unidades</div>
+    <div style="font-size:14px;margin-top:8px;opacity:.8">Desarrollo premiado. 30 unidades. Un solo movimiento.</div>
+    <a href="https://wa.me/5215570055934" class="cta-btn" target="_blank">Contactar por WhatsApp</a>
+    <div style="font-size:12px;margin-top:12px;opacity:.6">ventas@aliah.mx &middot; 55 7005 5934 &middot; aliah.mx</div>
+    <div style="font-size:11px;margin-top:4px;opacity:.5">Av. Lomas Verdes #77, Santa Cruz Acatlan, Naucalpan</div>
+  </div>
+
+  <div class="disc">
+    <b>Disclaimer:</b> Proyección ilustrativa. Rendimientos pasados no garantizan resultados futuros. Plusvalia ref: 6.5-7% anual (EDM Monopolio, mzo 2026). Cap rate 6.93% Lomas Verdes vivienda nueva (Monopolio 2026). CETES 28d: 6.54% bruto, ~5.64% neto ISR (Banxico 14-may-2026). Tasa hipotecaria referencial: 10.5% anual a 20 años. Renta: m2 interior x tarifa de mercado. Precios Mappen mayo 2026 con 5% desc. por volumen. Promo devolución hipoteca Torres A/B/C, tope $300,000 MXN. Scotiabank Valora: mención informativa, no compromiso de tasa.
+  </div>
+</div>
+
+<div style="height:40px"></div>
+
+<script>
+function showPlant(url) {
+  var m = document.getElementById('plantModal');
+  var img = document.getElementById('plantImg');
+  img.src = '';
+  m.classList.add('open');
+  img.src = url;
+}
+document.getElementById('plantModal').addEventListener('click', function(e) {
+  if(e.target === this || e.target.tagName === 'IMG') {
+    this.classList.remove('open');
+    document.getElementById('plantImg').src = '';
+  }
+});
+</script>
+</body>
+</html>
